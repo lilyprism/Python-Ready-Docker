@@ -4,9 +4,12 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DockerHOME=/home/app
 
+ARG GITHUB_USER
+ARG GITHUB_TOKEN
+
 # User set variables
-ENV GITHUB_USER=sayga231
-ENV GITHUB_TOKEN=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
+ENV GITHUB_USER=$GITHUB_USER
+ENV GITHUB_TOKEN=$GITHUB_TOKEN
 ENV GIT_REPO=github.com/sayga231/DjangoReady.git
 ENV PORT 8000
 
@@ -23,13 +26,10 @@ RUN apt-get clean -y
 
 # copy whole project to the docker home directory.
 COPY . $DockerHOME
-RUN git clone https://$GITHUB_USER:$GITHUB_TOKEN@$GIT_REPO repo
-
-
+RUN cd $DockerHOME
 
 # port where the Django app runs
 EXPOSE $PORT
 STOPSIGNAL SIGTERM
 
-RUN chmod +x /repo/start.sh
-CMD repo/start.sh
+CMD $DockerHOME/setup.sh
