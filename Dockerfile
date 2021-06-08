@@ -31,5 +31,6 @@ COPY setup.sh $DockerHOME
 EXPOSE 8000
 STOPSIGNAL SIGTERM
 
+# Run setup that will copy and do all the work
 RUN chmod +x setup.sh
 ENTRYPOINT ./setup.sh
