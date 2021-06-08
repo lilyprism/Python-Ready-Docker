@@ -22,6 +22,7 @@ WORKDIR $DockerHOME
 # Install dependencies
 RUN apt-get update -y
 RUN apt-get install git -y
+RUN apt-get install gdal-bin --no-install-recommends -y
 RUN apt-get clean -y
 
 # copy whole project to the docker home directory.
