@@ -1,4 +1,5 @@
-FROM python:3.9-slim-buster
+FROM python:3.9
+
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -11,7 +12,6 @@ ARG GITHUB_TOKEN
 ENV GITHUB_USER=$GITHUB_USER
 ENV GITHUB_TOKEN=$GITHUB_TOKEN
 ENV GIT_REPO=github.com/sayga231/DjangoReady.git
-ENV PORT 8000
 
 # set work directory
 RUN mkdir -p $DockerHOME
@@ -25,11 +25,11 @@ RUN apt-get install git -y
 RUN apt-get clean -y
 
 # copy whole project to the docker home directory.
-COPY . $DockerHOME
-RUN cd $DockerHOME
+COPY setup.sh $DockerHOME
 
 # port where the Django app runs
-EXPOSE $PORT
+EXPOSE 8000
 STOPSIGNAL SIGTERM
 
-CMD $DockerHOME/setup.sh
+RUN chmod +x setup.sh
+ENTRYPOINT ./setup.sh
