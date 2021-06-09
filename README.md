@@ -1,8 +1,10 @@
 # DjangoReady
- Django Ready Python Docker Images
+Django Ready Python Docker Images
  
- Serves as helper to deploy multiple django apps without creating a dockerfile for each one<br>
- Git repo must have a start.sh file at the root of the repo that is executed after setup is complete.
+Serves as helper to deploy multiple django apps without creating a dockerfile for each one<br>
+
+### Uses Python 3.9
+Git repo must have a start.sh file at the root of the repo that is executed after setup is complete.
 
 includes pipenv
 GDAL only on -GDAL tagged versions
