@@ -22,7 +22,6 @@ WORKDIR $DockerHOME
 # Install dependencies
 RUN apt-get update -y
 RUN apt-get install git -y
-RUN apt-get install gdal-bin --no-install-recommends -y
 RUN apt-get clean -y
 RUN pip install pipenv
 
