@@ -1,5 +1,5 @@
-# DjangoReady
-Django Ready Python Docker Images
+# PythonReady Docker
+Python Ready Docker Images
  
 Serves as helper to deploy multiple django apps without creating a dockerfile for each one<br>
 
