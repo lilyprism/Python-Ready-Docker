@@ -22,14 +22,15 @@ WORKDIR $DockerHOME
 # Install dependencies
 RUN apt-get update -y
 RUN apt-get install git -y
+# RUN apt-get install gdal-bin --no-install-recommends -y
 RUN apt-get clean -y
+RUN pip install pipenv
 
-# copy whole project to the docker home directory.
+# copy setup file to the docker home directory.
 COPY setup.sh $DockerHOME
 
 # port where the Django app runs
 EXPOSE 8000
-STOPSIGNAL SIGTERM
 
 # Run setup that will copy and do all the work
 RUN chmod +x setup.sh
