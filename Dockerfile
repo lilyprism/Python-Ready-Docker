@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.11
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -29,8 +29,10 @@ RUN pip install pipenv
 # copy setup file to the docker home directory.
 COPY setup.sh $DockerHOME
 
-# port where the Django app runs
+# ports where the Django app and any other app runs
+EXPOSE 7000
 EXPOSE 8000
+EXPOSE 9000
 
 # Run setup that will copy and do all the work
 RUN chmod +x setup.sh
