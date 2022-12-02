@@ -3,6 +3,7 @@
  
  Serves as helper to deploy multiple django apps without creating a dockerfile for each one
 
+includes nodejs 18
 includes GDAL and pipenv
 
 <h3>You must use these Environment Variables: </h3>
