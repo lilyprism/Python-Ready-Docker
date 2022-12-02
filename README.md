@@ -6,6 +6,7 @@ Serves as helper to deploy multiple django apps without creating a dockerfile fo
 ### Uses Python 3.11
 Git repo must have a start.sh file at the root of the repo that is executed after setup is complete.
 
+includes nodejs 18
 includes pipenv
 GDAL only on -GDAL tagged versions
 
