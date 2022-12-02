@@ -23,8 +23,9 @@ WORKDIR $DockerHOME
 RUN apt-get update -y
 RUN apt-get install git -y
 # RUN apt-get install gdal-bin --no-install-recommends -y
-RUN printf 'y\n1\n\1n' | apt install nodejs
-RUN apt install -y npm
+RUN apt-get -y install curl gnupg
+RUN curl -sL https://deb.nodesource.com/setup_18.x  | bash -
+RUN apt-get -y install nodejs
 RUN apt-get clean -y
 RUN pip install pipenv
 
