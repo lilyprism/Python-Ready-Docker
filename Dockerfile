@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM python:3.10
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -23,10 +23,6 @@ WORKDIR $DockerHOME
 RUN apt-get update -y
 RUN apt-get install git -y
 # RUN apt-get install gdal-bin --no-install-recommends -y
-RUN apt-get -y install curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_18.x  | bash -
-RUN apt-get -y install nodejs
-RUN apt-get clean -y
 RUN pip install pipenv
 
 # copy setup file to the docker home directory.
