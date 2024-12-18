@@ -16,19 +16,4 @@ while true; do
   # Change permissions on start script
   chmod +x ./start.sh
   ./start.sh &
-
-  # Wait 5 minutes before starting to check if there are new updates
-  sleep 300
-  echo "Started checking for updates..."
-  while true; do
-    git fetch
-    UPDATES=$(git rev-list HEAD...origin/master --count) || "0"
-
-    if [ "$UPDATES" -gt 0 ]; then
-      echo "There are updates,  restarting..."
-      cd ..
-      break
-    fi
-    sleep 60
-  done
 done
