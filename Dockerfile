@@ -11,7 +11,7 @@ ARG GITHUB_TOKEN
 # User set variables
 ENV GITHUB_USER=$GITHUB_USER
 ENV GITHUB_TOKEN=$GITHUB_TOKEN
-ENV GIT_REPO=github.com/sayga231/DjangoReady.git
+ENV GIT_REPO=github.com/lilyprism/DjangoReady.git
 
 # set work directory
 RUN mkdir -p $DockerHOME
