@@ -2,6 +2,11 @@ name: Publish Docker image
 
 on:
   workflow_dispatch:
+    inputs:
+      target_ref:
+        description: 'Tag, branch or commit SHA to build (if empty, uses event ref)'
+        required: false
+        default: ''
   release:
     types: [published]
 
@@ -10,8 +15,22 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
+      - name: Determine ref to checkout
+        id: vars
+        run: |
+          # If triggered via workflow_dispatch and an input was provided, use it.
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ github.event.inputs.target_ref }}" ]; then
+            echo "target_ref=${{ github.event.inputs.target_ref }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "target_ref=${{ github.ref }}" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Check out the repo
         uses: actions/checkout@v3
+        with:
+          ref: ${{ steps.vars.outputs.target_ref }}
+          fetch-depth: 0
+          fetch-tags: true
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
